@@ -22,7 +22,7 @@
         request.open('GET', 'https://www.khanacademy.org/api/labs/scratchpads/' + programID);
         request.addEventListener('load', function() {
           var programObj  = JSON.parse(request.responseText);
-          var programInfo = printObject(programObj);
+          var programInfo = printObject(programObj, 0);
           if (typeof infoElement.textContent !== 'undefined') { // Most modern browsers
             infoElement.textContent = programInfo;
           }
