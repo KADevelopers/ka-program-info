@@ -1,1 +1,45 @@
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>KA Program Info</title>
+  </head>
+  <body>
+    <h1>KA Program Information</h1>
+    <b>Get information for program: </b>
+    <input id="input" type="text" placeholder="Program ID">
+    <div id="info">
+      <!-- This div id empty until info is added via a request. -->
+    </div>
+    <script>
+      var ENTER_KEY_ID = 13;
+      
+      var inputElement, infoDiv;
+      
+      var getProgramInfo = function(programID) {
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://www.khanacademy.org/api/labs/scratchpads/' + programID);
+        request.addEventListener('load', function() {
+          var programInfo = request.responseText;
+          if (typeof div.textContent !== 'undefined') { // Most modern browsers
+            div.textContent = programInfo;
+          }
+          else { // IE
+            div.innerText   = programInfo; 
+          }
+        });
+      };
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        inputElement = document.getElementById('input');
+        infoDiv      = document.getElementById('info');
+        inputElement.addEventListener('keydown', function(eventInfo) {
+          if (eventInfo.keyCode === ENTER_KEY_ID) {
+            getProgramInfo(inputElement.value);
+            inputElement.value = '';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
