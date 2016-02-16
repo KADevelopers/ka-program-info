@@ -21,11 +21,11 @@
         request.open('GET', 'https://www.khanacademy.org/api/labs/scratchpads/' + programID);
         request.addEventListener('load', function() {
           var programInfo = request.responseText;
-          if (typeof div.textContent !== 'undefined') { // Most modern browsers
-            div.textContent = programInfo;
+          if (typeof infoDiv.textContent !== 'undefined') { // Most modern browsers
+            infoDiv.textContent = programInfo;
           }
           else { // IE
-            div.innerText   = programInfo; 
+            infoDiv.innerText   = programInfo; 
           }
         });
         request.send();
